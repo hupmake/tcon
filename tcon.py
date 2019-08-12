@@ -1,51 +1,88 @@
 ### Python script for converting time, like minutes to seconds, etc. ###
-
-print("Time converter v1.0.0")
+## version 1.1.0
+print("Time converter")
 
 # Setting up the variables
-selection1 = input("    Convert from hours, minutes, or seconds? ")
-selection2 = input("    Convert to hours, minutes, or seconds? ")
-
-## Debugging
-#print(selection1)
-#print(selection2)
+selection1 = input("    Convert from days, hours, minutes, or seconds? ")
 
 # Building the functions
-## Convert hours to minutes
+## Convert days
+def day_conv():
+    selection2 = input("    Convert to hours, minutes, or seconds? ")
+    if selection2 not in "[HhMmSs]" :
+        print("Invalid input! Please enter H, M, or S.")
+        exit()
+
+    num1 = float(input("\r    How many days? "))
+
+    if selection2 in "[Hh]" :
+        print(round(num1 * 24, 2))
+    elif selection2 in "[Mm]" :
+        print(round((num1 * 24) * 60, 2))
+    elif selection2 in "[Ss]" :
+        print(round(((num1 * 24) * 60) * 60, 2))
+
+## Convert hours
 def hour_conv():
-    global selection2
-#    print(selection2)
-    num1 = float(input("\r How many hours? "))
-#    print(num1)
-## This shiz is broken
-    if selection2 == "m" or selection2 == "M":
-        print(num1 * 60.0)
-    elif selection2 == "s" or selection2 == "S":
-        print(num1 * 60.0 * 60.0)
+    selection2 = input("    Convert to days, minutes, or seconds? ")
+    if selection2 not in "[DdMmSs]" :
+        print("Invalid input! Please enter D, M, or S.")
+        exit()
 
+    num1 = float(input("\r    How many hours? "))
+
+    if selection2 in "[Dd]" :
+        print(round(num1 / 24, 2))
+    elif selection2 in "[Mm]" :
+        print(round(num1 * 60, 2))
+    elif selection2 in "[Ss]" :
+        print(round(num1 * 60 * 60, 2))
+
+## Convert minutes
 def min_conv():
-    global selection2
+    selection2 = input("    Convert to days, hours, or seconds? ")
+    if selection2 not in "[DdHhSs]" :
+        print("Invalid input! Please enter D, H, or S.")
+        exit()
 
-    num1 = float(input("\r How many minutes? "))
+    num1 = float(input("\r    How many minutes? "))
 
-    if selection2 == "h" or selection2 == "H":
-        print(num1 / 60.0)
-    elif selection2 == "s" or selection2 == "S":
-        print(num1 * 60.0)
+    if selection2 in "[Dd]" :
+        print(round((num1 / 24) / 60, 2))
+    elif selection2 in "[Hh]" :
+        print(round(num1 / 60, 2))
+    elif selection2 in "[Ss]" :
+        print(round(num1 * 60, 2))
 
+## Convert seconds
 def sec_conv():
-    global selection2
+    selection2 = input("    Convert to days, hours, or minutes? ")
+    if selection2 not in "[DdHhMm]" :
+        print("Invalid input! Please enter D, H, or M.")
+        exit()
 
-    num1 = float(input("\r How many seconds? "))
+    num1 = float(input("\r    How many seconds? "))
 
-    if selection2 == "h" or selection2 == "H":
-        print((num1 / 60) / 60)
-    elif selection2 == "m" or selection2 == "M":
-        print(num1 / 60)
+    if selection2 in "[Dd]" :
+        print(round(((num1 / 60) / 60) / 24, 2))
+    if selection2 in "[Hh]" :
+        print(round((num1 / 60) / 60, 2))
+    elif selection2 in "[Mm]" :
+        print(round(num1 / 60, 2))
 
-if selection1 == "h" or selection1 == "H":
-    hour_conv()
-elif selection1 == "m" or selection1 == "M":
-    min_conv()
-elif selection1 == "s" or selection1 == "S":
-    sec_conv()
+## Run everything and catch errors
+try:
+    if selection1 in "[Dd]" :
+        day_conv()
+    elif selection1 in "[Hh]" :
+        hour_conv()
+    elif selection1 in "[Mm]" :
+        min_conv()
+    elif selection1 in "[Ss]" :
+        sec_conv()
+    else:
+        print("Invalid input! Enter H, M, or S.")
+    pass
+except ValueError as e:
+    print("Integers or decimals only.")
+    print("Please try again.")
