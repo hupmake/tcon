@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 ### Python script for converting time, like minutes to seconds, etc. ###
-tcon_version = "1.5.0"
+tcon_version = "1.6.1"
 
 # Import time!
 import sys
@@ -15,6 +15,38 @@ except IndexError:
     selection1 = input("    Convert from days, hours, minutes, or seconds? ")
 
 # Building the functions
+## Convert weeks
+def week_conv():
+    try:
+        if arg_opt is True and len(sys.argv[2]) > 0 :
+            num1 = float(sys.argv[2])
+            if len(sys.argv[3]) > 0 :
+                selection2 = sys.argv[3]
+        else:
+            num1 = float(input("\r    How many weeks? "))
+    except IndexError as e:
+        selection2 = input("    Convert to days, hours, minutes, or seconds? ")
+
+    if selection2 == "d" :
+        ans1 = round(num1 * 7, 2)
+        print(ans1)
+        sys.exit(0)
+    elif selection2 == "h" :
+        ans1 = round((num1 * 7) * 24, 2)
+        print(ans1)
+        sys.exit(0)
+    elif selection2 == "m" :
+        ans1 = round(((num1 * 7) * 24) * 60, 2)
+        print(ans1)
+        sys.exit(0)
+    elif selection2 == "s" :
+        ans1 = round((((num1 * 7) * 24) * 60) * 60, 2)
+        print(ans1)
+        sys.exit(0)
+    else:
+        print("Invalid input! Please enter d, h, m, or s.")
+        sys.exit(1)
+
 ## Convert days
 def day_conv():
     try:
@@ -23,22 +55,29 @@ def day_conv():
             if len(sys.argv[3]) > 0 :
                 selection2 = sys.argv[3]
         else:
-            num1 = float(input("\r    How many days?"))
+            num1 = float(input("\r    How many days? "))
     except IndexError as e:
-        selection2 = input("    Convert to hours, minutes, or seconds? ")
+        selection2 = input("    Convert to weeks, hours, minutes, or seconds? ")
 
-    if selection2 == "h":
+    if selection2 == "w" :
+        ans1 = round(num1 / 7, 2)
+        print(ans1)
+        sys.exit(0)
+    elif selection2 == "h":
         ans1 = round(num1 * 24, 2)
         print(ans1)
+        sys.exit(0)
     elif selection2 == "m":
         ans1 = round((num1 * 24) * 60, 2)
         print(ans1)
+        sys.exit(0)
     elif selection2 == "s":
         ans1 = round(((num1 * 24) * 60) * 60, 2)
         print(ans1)
+        sys.exit(0)
     else :
-        print("Invalid input! Please enter h, m, or s.")
-        exit()
+        print("Invalid input! Please enter w, h, m, or s.")
+        sys.exit(1)
 
 ## Convert hours
 def hour_conv():
@@ -50,17 +89,27 @@ def hour_conv():
         else:
             num1 = float(input("\r    How many hours? "))
     except IndexError as e:
-        selection2 = input("    Convert to days, minutes, or seconds? ")
+        selection2 = input("    Convert to weeks, days, minutes, or seconds? ")
 
-    if selection2 == "d" :
-        print(round(num1 / 24, 2))
+    if selection2 == "w" :
+        ans1 = round((num1 / 24) / 7 ,2)
+        print(ans1)
+        sys.exit(0)
+    elif selection2 == "d" :
+        ans1 = round(num1 / 24, 2)
+        print(ans1)
+        sys.exit(0)
     elif selection2 == "m" :
-        print(round(num1 * 60, 2))
+        ans1 = round(num1 * 60, 2)
+        print(ans1)
+        sys.exit(0)
     elif selection2 == "s" :
-        print(round(num1 * 60 * 60, 2))
+        ans1 = round(num1 * 60 * 60, 2)
+        print(ans1)
+        sys.exit(0)
     else:
-        print("Invalid input! Please enter D, M, or S.")
-        exit()
+        print("Invalid input! Please enter w, d, m, or s.")
+        sys.exit(1)
 
 ## Convert minutes
 def min_conv():
@@ -72,17 +121,27 @@ def min_conv():
         else:
             num1 = float(input("\r    How many minutes? "))
     except IndexError as e:
-        selection2 = input("    Convert to days, hours, or seconds? ")
+        selection2 = input("    Convert to weeks, days, hours, or seconds? ")
 
-    if selection2 == "d" :
-        print(round((num1 / 24) / 60, 2))
+    if selection2 == "w" :
+        ans1 = round(((num1 / 7) / 24) / 60, 2)
+        print(ans1)
+        sys.exit(0)
+    elif selection2 == "d" :
+        ans1 = round((num1 / 24) / 60, 2)
+        print(ans1)
+        sys.exit(0)
     elif selection2 == "h" :
-        print(round(num1 / 60, 2))
+        ans1 = round(num1 / 60, 2)
+        print(ans1)
+        sys.exit(0)
     elif selection2 == "s" :
-        print(round(num1 * 60, 2))
+        ans1 = round(num1 * 60, 2)
+        print(ans1)
+        sys.exit(0)
     else:
-        print("Invalid input! Please enter d, h, or s.")
-        exit()
+        print("Invalid input! Please enter w, d, h, or s.")
+        sys.exit(1)
 
 ## Convert seconds
 def sec_conv():
@@ -94,23 +153,34 @@ def sec_conv():
         else:
             num1 = float(input("\r    How many seconds? "))
     except IndexError as e:
-            selection2 = input("    Convert to days, hours, or minutes? ")
+            selection2 = input("    Convert to weeks, days, hours, or minutes? ")
 
-    if selection2 == "d" :
-        print(round(((num1 / 60) / 60) / 24, 2))
-    if selection2 == "h" :
-        print(round((num1 / 60) / 60, 2))
+    if selection2 == "w" :
+        ans1 = round((((num1 / 60) / 60) / 24) / 7, 2)
+        print(ans1)
+        sys.exit(0)
+    elif selection2 == "d" :
+        ans1 = round(((num1 / 60) / 60) / 24, 2)
+        print(ans1)
+        sys.exit(0)
+    elif selection2 == "h" :
+        ans1 = round((num1 / 60) / 60, 2)
+        print(ans1)
+        sys.exit(0)
     elif selection2 == "m" :
-        print(round(num1 / 60, 2))
+        ans1 = round(num1 / 60, 2)
+        print(ans1)
+        sys.exit(0)
     else:
         print("Invalid input! Please enter D, H, or M.")
-        exit()
+        sys.exit(1)
 
 def tcon_help():
     print("tcon - A time denomination conversion tool")
     print("Version:", tcon_version)
     print("\nYou can either use the prompts or the following command-line arguments")
     print("Usage: tcon.py <starting denomination> <amount> <desired denomination>")
+    print(" w    -    Weeks")
     print(" d    -    Days")
     print(" h    -    Hours")
     print(" m    -    Minutes")
@@ -118,9 +188,12 @@ def tcon_help():
     print("\nExample: tcon.py d 1 h")
     print("24.0")
     print("\n2019, Hupmake")
+    sys.exit(0)
 
 ## Run everything and catch errors
 try:
+    if selection1 == "w" :
+        week_conv()
     if selection1 == "d" :
         day_conv()
     elif selection1 == "h" :
@@ -139,3 +212,4 @@ try:
 except ValueError as e:
     print("Integers or decimals only.")
     print("Please try again.")
+    sys.exit(1)
