@@ -38,7 +38,7 @@ def day_conv():
         print(ans1)
     else :
         print("Invalid input! Please enter h, m, or s.")
-        exit()
+        sys.exit(1)
 
 ## Convert hours
 def hour_conv():
@@ -60,7 +60,7 @@ def hour_conv():
         print(round(num1 * 60 * 60, 2))
     else:
         print("Invalid input! Please enter D, M, or S.")
-        exit()
+        sys.exit(1)
 
 ## Convert minutes
 def min_conv():
@@ -82,7 +82,7 @@ def min_conv():
         print(round(num1 * 60, 2))
     else:
         print("Invalid input! Please enter d, h, or s.")
-        exit()
+        sys.exit(1)
 
 ## Convert seconds
 def sec_conv():
@@ -104,7 +104,7 @@ def sec_conv():
         print(round(num1 / 60, 2))
     else:
         print("Invalid input! Please enter D, H, or M.")
-        exit()
+        sys.exit(1)
 
 def tcon_help():
     print("tcon - A time denomination conversion tool")
@@ -139,3 +139,4 @@ try:
 except ValueError as e:
     print("Integers or decimals only.")
     print("Please try again.")
+    sys.exit(1)
