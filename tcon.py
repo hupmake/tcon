@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 ### Python script for converting time, like minutes to seconds, etc. ###
-tcon_version = "1.5.1"
+tcon_version = "1.6.1"
 
 # Import time!
 import sys
@@ -180,6 +180,7 @@ def tcon_help():
     print("Version:", tcon_version)
     print("\nYou can either use the prompts or the following command-line arguments")
     print("Usage: tcon.py <starting denomination> <amount> <desired denomination>")
+    print(" w    -    Weeks")
     print(" d    -    Days")
     print(" h    -    Hours")
     print(" m    -    Minutes")
