@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 ### Python script for converting time, like minutes to seconds, etc. ###
-tcon_version = "1.5.0"
+tcon_version = "1.5.1"
 
 # Import time!
 import sys
